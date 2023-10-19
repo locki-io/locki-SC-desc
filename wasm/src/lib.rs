@@ -19,8 +19,8 @@ multiversx_sc_wasm_adapter::endpoints! {
     contract
     (
         storeCreatorDescription
-        getCretorsDescription
-        getCreatorsDescriptionLength
+        get_creators_description
+        get_creators_description_length
     )
 }
 

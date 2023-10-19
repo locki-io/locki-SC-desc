@@ -15,13 +15,9 @@ pub trait Contract {
         self.creator_code_descriptions().insert(nft_nonce.clone(), description.clone());
     }
 
-    #[endpoint(getCretorsDescription)]
-    fn get_creators_description(&self, nft_nonce: u8) {
-        self.creator_code_descriptions().get(&nft_nonce);
-    }
-
-    #[endpoint(getCreatorsDescriptionLength)]
-    fn get_creators_description_length(&self) {
-        self.creator_code_descriptions().len();
+    #[view]
+    fn get_creators_description(&self, nft_nonce: u8) -> Option<ManagedBuffer> {
+        let description = self.creator_code_descriptions().get(&nft_nonce);
+        description
     }
 }

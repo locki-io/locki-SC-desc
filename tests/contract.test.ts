@@ -1,4 +1,4 @@
-import { test, beforeEach, afterEach, describe, assert } from "vitest";
+import { test, beforeEach, afterEach, describe, assert, expect } from "vitest";
 import { SWorld, SWallet, SContract, e } from "xsuite";
 
 let world: SWorld;
@@ -28,22 +28,14 @@ describe('Creators Description',async () => {
       funcArgs: [e.U8(1), e.Str("First Description")]
     });
 
-    const lengthResult = await deployer.callContract({
+    const result = await world.query({
       callee: contract,
-      gasLimit: 5_000_000,
-      funcName: "getCretorsDescription",
+      funcName: "get_creators_description",
       funcArgs: [e.U8(1)]
     });
-    console.log('lengthResult', lengthResult.returnData);
+    const descriptionBuffer = Buffer.from(result.returnData?.[0] || '', 'hex');
+    const description = descriptionBuffer.toString();
 
-    const result = await deployer.callContract({
-      callee: contract,
-      gasLimit: 5_000_000,
-      funcName: "getCretorsDescription",
-      funcArgs: [e.U8(1)]
-    });
-    console.log('result.returnData', result.returnData);
-
-    assert(result.returnData.includes("First Description"), "contract did not save the description");
+    expect(description).toContain("First Description");
   });
 })
