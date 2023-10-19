@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                            3
+// Endpoints:                            2
 // Async Callback (empty):               1
-// Total number of exported functions:   5
+// Total number of exported functions:   4
 
 #![no_std]
 #![feature(lang_items)]
@@ -19,8 +19,7 @@ multiversx_sc_wasm_adapter::endpoints! {
     contract
     (
         storeCreatorDescription
-        get_creators_description
-        get_creators_description_length
+        you_mint_lucky_you
     )
 }
 

@@ -16,7 +16,7 @@ pub trait Contract {
     }
 
     #[view]
-    fn get_creators_description(&self, nft_nonce: u8) -> Option<ManagedBuffer> {
+    fn you_mint_lucky_you(&self, nft_nonce: u8) -> Option<ManagedBuffer> {
         let description = self.creator_code_descriptions().get(&nft_nonce);
         description
     }

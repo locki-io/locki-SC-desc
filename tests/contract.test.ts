@@ -30,7 +30,7 @@ describe('Creators Description',async () => {
 
     const result = await world.query({
       callee: contract,
-      funcName: "get_creators_description",
+      funcName: "you_mint_lucky_you",
       funcArgs: [e.U8(1)]
     });
     const descriptionBuffer = Buffer.from(result.returnData?.[0] || '', 'hex');
