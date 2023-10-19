@@ -8,5 +8,20 @@ pub trait Contract {
     fn init(&self) {}
 
     #[storage_mapper("creatorCodeDescriptions")]
-    fn creator_code_descriptions(&self) -> MapMapper<ManagedAddress, ManagedBuffer>;
+    fn creator_code_descriptions(&self) -> MapMapper<u8, ManagedBuffer>;
+
+    #[endpoint(storeCreatorDescription)]
+    fn store_creators_description(&self, nft_nonce: u8, description: ManagedBuffer) {
+        self.creator_code_descriptions().insert(nft_nonce.clone(), description.clone());
+    }
+
+    #[endpoint(getCretorsDescription)]
+    fn get_creators_description(&self, nft_nonce: u8) {
+        self.creator_code_descriptions().get(&nft_nonce);
+    }
+
+    #[endpoint(getCreatorsDescriptionLength)]
+    fn get_creators_description_length(&self) {
+        self.creator_code_descriptions().len();
+    }
 }
